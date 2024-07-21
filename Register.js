@@ -11,15 +11,20 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', formData);
-      console.log(res.data);
-      // Save token and redirect
+      await axios.post('http://localhost:5000/api/users/register', formData);
+      alert('Registration successful!');
     } catch (error) {
-      console.error(error.response.data);
+      alert('Error registering user');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Username" required />
-      <input type="password" name="password" value={formData
+      <input type="text" name="username" placeholder="Username" onChange={handleChange} />
+      <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+      <button type="submit">Register</button>
+    </form>
+  );
+};
+
+export default Register;
